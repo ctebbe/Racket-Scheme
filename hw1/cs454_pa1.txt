@@ -1,0 +1,24 @@
+Due 11:55PM Wednesday, February 12. Use the dropbox on RamCT to turn in your assignment.
+Name your file "a2.YourName.rkt".
+
+The problems require that you write and test Racket/Scheme procedures (functions). These programs are to be written using recursion, without loops. Use of assignments is not allowed. However, you may use the Racket/Scheme "let" construct. You may also use helper functions. Develop a good set of test data, and make sure that your program runs on this data.
+
+Submit your programs as one .rkt file (really a text file) to the RamCT dropbox. Name your file "a2.YourName.rkt". Put the assignment number, your name, and the date in a comment at the beginning of the file, as shown below for student Don Knuth:
+
+; A2: Don Knuth 1/16/2014
+
+Include the following honor pledge with your typed signature as a comment on your submitted assignment:
+
+    "I have not given, received, or used any unauthorized assistance."
+    - Your Typed "signature" 
+
+Use the "Essentials of Programming Languages" version of DrRacket by including the following at the top of your program file:
+
+#lang eopl
+
+The assignment: Write and test the Scheme (now Racket) procedures described in the EOPL text (Third Edition) Exercises 1.15 -- 1.30 on pages 26-28.
+
+Grading:
+
+    (60 points, 5 points per exercise) Exercises 1.15, 1.16, 1.17, 1.18, 1.19, 1.20, 1.21,1.22 1.23, 1.24, 1.25, and 1.26 in EOPL, p. 26-28.
+    (40 points, 10 points per exercise) Exercises 1.27, 1.28, 1.29 and 1.30 in EOPL, p. 27-28. 

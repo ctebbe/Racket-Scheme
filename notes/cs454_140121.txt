@@ -1,0 +1,20 @@
+due thursday: 3x5 card assignment
+read chapter 1
+
+prog enviroment: dr racket
+
+--- // ---
+prefix notation; 	
+	(+ 1 2 3) = 6
+	(+ 1 (* 2 3)) = 7
+---
+language; a means for expression
+turing equivalent language; anything written in C can be written in Java.
+need well-structured programs since we spend a lot of time reading others code
+
+syntax: structure of lang
+semantics: meaning of constructs
+	same semantics, diff syntax; A = B(java) <--> A := B (Pascal)
+pragmatics: utility of a lang
+
+
