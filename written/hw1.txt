@@ -66,4 +66,65 @@ ii.
    2
 
 (c).
+        E
+      / | \
+    E   +   T
+    |       |
+    T       F
+    |       |
+    F      (E)
+    |       |
+    2       E
+            |
+            T
+          / | \
+         T  *  F
+         |     |
+         F     5
+         |
+         3
+
+3.
+
+4.
+(a).
+i. The non-terminal symbols in the grammar are E, T, F, and D.
+ii. The terminal symbols in the grammar are .
+iii. The operators with the highest precedence are
+iv. The operators with the lowest precedence are
+v. The associativity of + is left associative.
+vi. The associativity of * is right associative.
+
+(b).
+i.
+        -
+      /   \
+     +     d
+    / \
+   *   a
+  / \
+ b   c
+
+ii.
+            E
+          / | \
+         E  -  T
+       / | \    \
+      T  +  E    F
+     /      |     \
+    F       T      D
+    |       |      |
+    D       F      d
+    |     / | \
+    a    F  *  D
+         |     |
+         D     c
+         |
+         b
+
+iii.
+
+(c).
+
+5.
 
