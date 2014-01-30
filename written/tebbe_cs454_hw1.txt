@@ -1,0 +1,190 @@
+Caleb Tebbe
+CS454 Assignment 1 -- Syntax
+01-27-2014
+I have not given, received, or used any unauthorized assistance. - Caleb Tebbe
+
+1.
+i.
+(a).
+    +
+  /   \
+ a     +
+      / \
+     b   *
+        / \
+       c   d
+(b).
+    *
+   /  \
+  a    *
+      /  \
+     b    +
+         /  \
+        c    d
+(c).
+    +
+   /  \
+  a    *
+      /  \
+     d    *
+         /  \
+        b    c
+
+ii.
+(a). abcd*++
+(b). abcd+**
+(c). abc*d*+
+
+2.
+(a).
+i.
+        E
+      / | \
+    E   +   T
+    |     / | \
+    T    T  *  F
+    |    |     |
+    F    F     5
+    |    |
+    2    3
+ii.
+    +
+   / \
+  2   *
+     / \
+    3   5
+
+(b).
+i.
+          E
+          |
+          T
+        / | \
+      T   *   F
+      |       |
+      F       5
+      |
+     (E)
+    / | \
+   E  +  T
+   |     |
+   T     F
+   |     |
+   F     3
+   |
+   2
+ii.
+    *
+   / \
+  +   5
+ / \
+2   3
+
+(c).
+i.
+        E
+      / | \
+    E   +   T
+    |       |
+    T       F
+    |       |
+    F      (E)
+    |       |
+    2       T
+          / | \
+         T  *  F
+         |     |
+         F     5
+         |
+         3
+ii.
+    +
+   / \
+  2   *
+     / \
+    3   5
+
+3.
+E ::= AB
+B ::= b | bBb
+A ::= aa | aaA
+
+4.
+(a).
+i. The non-terminal symbols in the grammar are E, T, F, and D.
+ii. The terminal symbols in the grammar are a, b, c, ..., z.
+iii. The operator with the highest precedence is * as it requires 2 additional productions.
+iv. The operators with the lowest precedence are - and +.
+v. The associativity of + is right associative.
+vi. The associativity of * is left associative.
+
+(b).
+i.
+        -
+      /   \
+     +     d
+    / \
+   a   *
+      / \
+     b   c
+
+ii.
+            E
+          / | \
+         E  -  T
+       / | \    \
+      T  +  E    F
+     /      |     \
+    F       T      D
+    |       |      |
+    D       F      d
+    |     / | \
+    a    F  *  D
+         |     |
+         D     c
+         |
+         b
+
+iii.
+I will draw the evaluation trees of a+b-c to show this grammar is ambiguous.
+
+(1)
+            E
+          / | \
+         T  +  E
+         |    /|\
+         F   E - T
+         |   |   |
+         D   T   F
+         |   |   |
+         a   F   D
+             |   |
+             D   c
+             |
+             b
+
+(2)
+            E
+          / | \
+         E  -  T
+       / | \   |
+      T  +  E  F
+      |     |  |
+      F     T  D
+      |     |  |
+      D     F  c
+      |     |
+      a     D
+            |
+            b
+
+(c).
+To make the grammar non-ambigous, we can change the associativity of - to match that of +. So, "E - T" would become "T - E".
+
+5.
+
+<O> ::= <A> | <O> or <A>
+<A> ::= <N> | <A> and <N>
+<N> ::= <P> | not <N>
+<P> ::= <B> | (O)
+<B> ::= true | false
