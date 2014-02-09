@@ -62,7 +62,48 @@
   (lambda (sos1 sos2)
     (if (null? sos1)
       '()
+      ; must return a new list so append
       (append (map (lambda (x) (list (car sos1) x)) sos2) ; first element of sos1 with all of sos2
               (product (cdr sos1) sos2))))) ; recurse on rest of sos1
 ;(product '(a b c) '(x y))
+
 ; 1.22
+(define filter-in
+  (lambda (pred lst)
+    (cond ((null? lst) '())
+    ((pred (car lst)) (cons (car lst) (filter-in pred (cdr lst))))
+    (else (filter-in pred (cdr lst))))))
+; (filter-in number? '(a 2 (1 3) b 7))
+; (filter-in symbol? '(a (b c) 17 foo))
+
+; 1.23
+(define list-index-helper
+  (lambda (pred lst cnt)
+    (cond ((null? lst) #f)
+          ((pred (car lst)) cnt);)))
+          (else (list-index-helper pred (cdr lst) (+ cnt 1))))))
+(define list-index
+  (lambda (pred lst)
+    (list-index-helper pred lst 0)))
+;(list-index number? '(a 2 (1 3) b 7))
+;(list-index symbol? '(a (b c) 17 foo))
+;(list-index symbol? '(1 2 (b c) 3))
+
+; 1.24
+(define every?
+  (lambda (pred lst)
+    (cond ((null? lst) #t)
+          ((not (pred (car lst))) #f)
+          (else (every? pred (cdr lst))))))
+;(every? number? '(a b c 3 e))
+;(every? number? '(1 2 3 4 5))
+;(every? number? '(1 2 3 4 r))
+
+; 1.25
+(define exists?
+  (lambda (pred lst)
+    (cond ((null? lst) #f)
+          ((pred (car lst)) #t)
+          (else (exists? pred (cdr lst))))))
+
+; 1.26
