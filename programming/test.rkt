@@ -30,8 +30,16 @@
 ;(down '(a (more (complicated)) object))
 
 ; 1.18
-;(define swapper
-;  (lambda (s1 s2 slist)))
+(define swapper
+  (lambda (s1 s2 slist)
+    (cond ((null? slist) '())
+          ((list? (car slist)) (cons (swapper s1 s2 (car slist)) (swapper s1 s2 (cdr slist))))
+          ((equal? s1 (car slist)) (cons s2 (swapper s1 s2 (cdr slist))))
+          ((equal? s2 (car slist)) (cons s1 (swapper s1 s2 (cdr slist))))
+          (else (cons (car slist) (swapper s1 s2 (cdr slist)))))))
+(swapper 'a 'd '(a b c d))
+(swapper 'a 'd '(a d () c d))
+(swapper 'x 'y '((x) y (z (x))))
 
 ; 1.19
 (define list-set
@@ -105,5 +113,40 @@
     (cond ((null? lst) #f)
           ((pred (car lst)) #t)
           (else (exists? pred (cdr lst))))))
+;(exists? number? '(a b c d 3 e))
+;(exists? number? '(a b c d e))
+;(exists? number? '(1 2 3 4 r))
 
 ; 1.26
+(define up
+  (lambda (lst)
+    (cond ((null? lst) '())
+          ((list? (car lst)) (append (car lst) (up (cdr lst))))
+          (else (cons (car lst) (up (cdr lst)))))))
+;(up '((1 2) (3 4)))
+;(up '((x (y)) z))
+
+; 1.27
+(define flatten
+  (lambda (slist)
+    (cond ((null? slist) '())
+          ((null? (car slist)) (flatten (cdr slist))) ; nothing to flatten so exclude it
+          ((list? (car slist)) (append (flatten (car slist)) (flatten (cdr slist)))) ; append results of car list to cdr list
+          (else (cons (car slist) (flatten (cdr slist))))))) ; car must be an individual char
+;(flatten '(a b c))
+;(flatten '((a) () (b ()) () (c)))
+;(flatten '((a b) c (((d)) e)))
+;(flatten '(a b (() (c))))
+
+; 1.28
+(define merge
+  (lambda (loi1 loi2)
+    (cond ((null? loi1) loi2)
+          ((null? loi2) loi1)
+          ((< (car loi1) (car loi2)) (cons (car loi1) (merge (cdr loi1) loi2)))
+          (else (cons (car loi2) (merge loi1 (cdr loi2)))))))
+;(merge '(1 4) '(1 2 8))
+;(merge '(35 62 81 90 91) '(3 83 85 90))
+
+; 1.29
+; 1.30
