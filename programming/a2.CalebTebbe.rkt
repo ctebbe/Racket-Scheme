@@ -1,4 +1,8 @@
-#lang racket
+; A2: Caleb Tebbe 02-12-2014
+; "I have not given, received, or used any unauthorized assistance." - Caleb Tebbe
+
+;#lang racket
+#lang eopl
 ; Exercises 1.15, 1.16, 1.17, 1.18, 1.19, 1.20, 1.21,1.22 1.23, 1.24, 1.25, and 1.26 in EOPL, p. 26-28.
 ; Exercises 1.27, 1.28, 1.29 and 1.30 in EOPL, p. 27-28.
 
@@ -37,9 +41,9 @@
           ((equal? s1 (car slist)) (cons s2 (swapper s1 s2 (cdr slist))))
           ((equal? s2 (car slist)) (cons s1 (swapper s1 s2 (cdr slist))))
           (else (cons (car slist) (swapper s1 s2 (cdr slist)))))))
-(swapper 'a 'd '(a b c d))
-(swapper 'a 'd '(a d () c d))
-(swapper 'x 'y '((x) y (z (x))))
+;(swapper 'a 'd '(a b c d))
+;(swapper 'a 'd '(a d () c d))
+;(swapper 'x 'y '((x) y (z (x))))
 
 ; 1.19
 (define list-set
@@ -149,4 +153,24 @@
 ;(merge '(35 62 81 90 91) '(3 83 85 90))
 
 ; 1.29
+(define sort
+  (lambda (lst)
+    (cond ((null? lst) '())
+          ((null? (cdr lst)) lst)
+          (else (merge (cons (car lst) '())
+                       (sort (cdr lst)))))))
+;(sort '(8 2 5 2 3))
+;(sort '(90 80 70 60 50 40 30 20 10 1))
+
 ; 1.30
+(define sort/predicate
+  (lambda (pred lst)
+    ; use these to figure out which elements are pred/not pred of a given element
+    (define is-pred (lambda (predicate toCompare) (lambda (x) (predicate x toCompare))))
+    (define is-not-pred (lambda (predicate toCompare) (lambda (x) (not (pred x toCompare)))))
+    (cond ((null? lst) '())
+          (else (append (sort/predicate pred (filter-in (is-pred pred (car lst)) (cdr lst)))
+                        (list (car lst)) ; has to be a list or append complains
+                        (sort/predicate pred (filter-in (is-not-pred pred (car lst)) (cdr lst))))))))
+;(sort/predicate < '(8 2 5 2 3))
+;(sort/predicate > '(8 2 5 2 3))
