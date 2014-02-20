@@ -1,0 +1,11 @@
+Comparing functional and object oriented approaches to searching and sorting large lists.
+
+Caleb Tebbe
+
+The programming language topic is comparing the speed and syntax of traditional Java (pre-Java 8), functional Java (via the java.util.function package debuting in Java 8), and Scheme/Racket implementations on general list operations such as searching and sorting.
+
+This is an interesting topic because Java is recognized for it's object oriented design and will be debuting a java.util.function package which supports the construction of lambda functions and the use of predicates much like Scheme/Racket.
+
+I plan to implement the same comparison-based sorting algorithm (ie. merge sort or quick sort) in O(nlgn) time and a searching algorithm (ie. binary search) following the 3 approaches and run them on the same large lists. I will then look at the 3 different approaches and compare them in terms of speed (in ms), effort required to implement each algorithm (in minutes), and syntax elegance (ranked on a 5 star system).
+
+I expect to learn some of the new functional features in Java 8 as well as the pros and cons of an object oriented vs functional approach to algorithm design on some basic algorithms.
