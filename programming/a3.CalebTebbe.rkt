@@ -33,7 +33,7 @@
 (define extend-env*
   (lambda (vars vals env)
     (cond ((null? vars) env) ; since we can assume vars.size == vals.size only check one
-          (else (extend-env* (cdr vars) (cdr vals) 
+          (else (extend-env* (cdr vars) (cdr vals)
                              (extend-env (car vars) (car vals) env))))))
 
 
@@ -100,7 +100,7 @@
   (lambda (tree)
     (cases bintree tree
       (leaf-node (value) '())
-      (interior-node (key left right)                   
+      (interior-node (key left right)
                      (append (list (list key (leaf-sum tree)))
                              (bintree-to-listsum left)
                              (bintree-to-listsum right))))))
