@@ -16,6 +16,10 @@
 ; 3
 
 ; 4
+(define extend-env*
+  (lambda (vars vals env)
+    (cons (list->vector vals) env)))
+    
 
 ; 5
 ; empty-stack, push, pop, top, and empty-stack?
