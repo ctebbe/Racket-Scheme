@@ -1,0 +1,131 @@
+notes 1
+
+; prog languages and formality
+
+; purpose of prog langs
+comm between ppl
+
+; syntax, semantics, pragmatics
+syntax: struct and appear of lang constructs
+semantics: meaning of constructs
+pragmatics: utility of a lang
+diff syntax, same semantics: a = b, move a to b
+
+
+; PL history
+
+; compilers vs interpreters
+compiler: trans src code into exec program
+    src -> exec object
+    src -> lexical analys -> syntax analy -> semantic analy -> obj code
+interpreter: runs the src code directly
+    prog+data -> output
+    fetch instr, fetch ops, exec ops
+
+    notes 2
+    grammar: rules that define the set of sentences in a lang
+    sentence: finit seq of syms from the vocab, meeting gramm rules
+    vocab: finite set of syms
+    sym: +, -, digit, letter
+
+    ; ambiguous grammar: has more than 1 possible parse tree
+
+    ; parse tree
+        E
+      / | \
+     E  +  F
+
+     ; eval tree
+     a + b * c
+        +
+      /   \
+     a     *
+          / \
+         b   c
+
+     ; right associative: right recursive, tree heavy right
+     ; more productions = higher precedence
+
+    ; context free grammars
+    a set of terminals/non-terminals, procedures/production ie. LHS ::= RHS, RHS has terms/non-terms
+
+    ; expression grammars
+        arithmetic
+
+    ; BNF, extended BNF
+    < non-terminal > in uppercase
+    syms are quotes ')'
+
+    ; writing grammars
+
+    ; opts for expression syntax and semantics
+
+    notes 3
+
+    ; diff between functional and procedure
+    proc: how to do activity instead of why
+        actions coupled to system space
+    funct: out = funct(inputs), no reference to position
+        result motivated, side effect free
+        no assignments in pure funct, small framework, simple syntax
+
+    ; scheme apps:
+        non-numeric processing
+        prog lang theory
+        statically scoped
+        procedures/functs are first class
+        predicates: end w/ ?, true or false
+            boolean? symbol? char? vector? procedure? pair?(list) number? port? list?
+        define <var> <exp>
+        cons makes dotted pairs
+        append merges lists
+        list constructs new lists
+        vector has index elements accessed by (vector-ref <vector> <index>)
+        (eval L): if L is a primitive return its value
+            elif apply (car L) using eval args
+            elif apply (car L) w/ uneval args
+
+    ; lists vectors
+
+    ; equal? safer to use, eq? like ==
+
+    ; recursion vs loops
+
+    notes 4
+
+    ; lambda calc & its historical significance
+    Lx.e -> Ly.[y/x]e, all occurrences of x in e are replaced with y
+    (Lx.e1)e2 -> [e2/x]e1
+    L-calc is complete:
+        nums defined in terms of functs
+        arithmetic ops can also be defined
+        bools, predicates
+
+    ; scoping
+        static: determine the declaration of a var by analyzing the program text alone
+        dynamic: we can only determine the declaration of a var when the program is exec
+
+
+    ; binding var occurrences
+        ((lambda (x) x) y), x is bound, y is free
+
+    ; reduction and renaming rules
+
+    ; bound and unbound vars
+
+    ; lexical addresses
+    lexical depth:position
+    (lambda (x y)
+        ((lambda (a)
+            ( (x : 1 0) ((a : 0 0) (y : 1 1))))
+        (x : 0 ))))
+
+    ; currying
+    takes 1 arg at a time, multiple args can be broken up into many lambda functions
+
+    ; eval orders: normal form, strict and lazy eval
+        normal form: L-exp can no longer be reduced by B-reduction or n-reduction rules
+        strict: make calculations as you go
+        lazy: dont make any calculations will we have to
+        church-rosser: lazy/strict ordering turn out the same result. lazy ordering sometimes evals when strict doesnt
+
