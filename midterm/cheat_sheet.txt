@@ -22,7 +22,7 @@ interpreter: runs the src code directly
     prog+data -> output
     fetch instr, fetch ops, exec ops
 
-    notes 2
+notes 2
     grammar: rules that define the set of sentences in a lang
     sentence: finit seq of syms from the vocab, meeting gramm rules
     vocab: finite set of syms
@@ -50,7 +50,7 @@ interpreter: runs the src code directly
     a set of terminals/non-terminals, procedures/production ie. LHS ::= RHS, RHS has terms/non-terms
 
     ; expression grammars
-        arithmetic
+        arithmetic, enforce operator precedence and associativity
 
     ; BNF, extended BNF
     < non-terminal > in uppercase
@@ -60,7 +60,7 @@ interpreter: runs the src code directly
 
     ; opts for expression syntax and semantics
 
-    notes 3
+notes 3
 
     ; diff between functional and procedure
     proc: how to do activity instead of why
@@ -91,7 +91,7 @@ interpreter: runs the src code directly
 
     ; recursion vs loops
 
-    notes 4
+notes 4
 
     ; lambda calc & its historical significance
     Lx.e -> Ly.[y/x]e, all occurrences of x in e are replaced with y
@@ -128,4 +128,47 @@ interpreter: runs the src code directly
         strict: make calculations as you go
         lazy: dont make any calculations will we have to
         church-rosser: lazy/strict ordering turn out the same result. lazy ordering sometimes evals when strict doesnt
+notes 5
+    ; abstract data types
+        public interface
+        private rep and impl
 
+        (define-datatype bintree bintree?
+            (leaf-node (datum number?))
+            (interior-node
+                (key symbol?)
+                (left bintree?)
+                (right bintree?)))
+        (define leaf-sum
+            (lambda(tree)
+                (cases bintree tree
+                    (leaf-node (datum) datum)
+                    (interior-node (key left right)
+                        (+ (leaf-sum left) (leaf-sum right)))))))
+
+    ; lists can model most anything..without abstraction & encapsulation support
+
+    ; representing datatypes as procedures
+
+    ; rep abstract syntax using datatypes
+
+    ; parsing and unparsing
+        concrete syntax: struct of text rep of a statment ie. if <test> then <conseq> else <alt>.
+        abstract syntax: no syntactic sugar like "if", "then", or "else"
+
+        (define-datatype exp exp?
+            (lit-exp (datum number?))
+            (var-exp (id symbol?)))
+
+        parse: concrete syntax -> abstract syntax
+            (define parse-exp (lambda (datum)
+                (cond ((number? datum) (lit-exp datum))
+                      ((symbol? datum) (var-exp datum))
+                      (else (eopl:error 'parse-exp)))))
+        unparse: abstract syntax -> concrete syntax
+            (define unparse-exp (lambda (expr)
+                (cases exp expr
+                    (lit-exp (datum) datum)
+                    (var-exp (id) id))))
+
+    ; enviroments and their representation
