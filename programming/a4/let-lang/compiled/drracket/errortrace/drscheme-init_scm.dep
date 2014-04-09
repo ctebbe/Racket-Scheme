@@ -1,0 +1,1 @@
+("5.93" ("46910803b066d2fbc463a85d5a726a904d69331e" . "80760384ba45c995e8e08cd05cf4316ea135ddb6") (collects #"mzscheme" #"main.rkt") (collects #"mzlib" #"pretty.rkt") (collects #"mzlib" #"trace.rkt"))
