@@ -1,1 +1,1 @@
-("5.93" ("9a2e105c1722336fad6bf5c5fd5403a7384cf3f3" . "cc16d75718142147bc47a218b48c98b090406abf") (collects #"eopl" #"eopl.rkt") #"/s/bach/l/under/ctebbe/workspace/cs454/programming/a4/let-lang/data-structures.scm")
+("5.3.6" ("9a2e105c1722336fad6bf5c5fd5403a7384cf3f3" . "1bbed6202dc710ec0326ddfc2ffdd560f9addc62") #"/home/crt/workspace/cs454/programming/a4/let-lang/data-structures.scm" (collects #"errortrace" #"errortrace-key.rkt") (collects #"eopl" #"eopl.rkt"))

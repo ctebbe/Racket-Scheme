@@ -13,6 +13,10 @@
   (provide value-of-program value-of)
 
 ;;;;;;;;;;;;;;;; the interpreter ;;;;;;;;;;;;;;;;
+  
+  (define true-value?
+  (lambda (x)
+    (not (zero? x))))
 
   ;; value-of-program : Program -> ExpVal
   ;; Page: 71
@@ -122,14 +126,12 @@
         
         ; 3.12
         (cond-exp (test-exp action-exp)
-                  (cond ((null? test-exp) 0);expval-extractor-error 'cond-exp test-exp)
-                        ((value-of (car test-exp) env)
-                         (value-of (car action-exp) env))
-                        (else (value-of (cond-exp (cdr test-exp) (cdr action-exp) 
-                                                  env)))))
+                  (cond ((null? test-exp) expval-extractor-error 'cond-exp test-exp)
+                        ((value-of (car test-exp) env) (value-of (car action-exp) env))
+                        (else (value-of (cond-exp (cdr test-exp) (cdr action-exp) env)))))
 
-               
-        \commentbox{\ma{\theifspec}}
+     
+        ;\commentbox{\ma{\theifspec}}
         (if-exp (exp1 exp2 exp3)
           (let ((val1 (value-of exp1 env)))
             (if (expval->bool val1)

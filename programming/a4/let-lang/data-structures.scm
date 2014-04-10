@@ -62,6 +62,7 @@
       (cases expval v
         (emptylist-val () (bool-val #t))
         (else (bool-val #f)))))
+  
 
   (define expval-extractor-error
     (lambda (variant value)

@@ -1,1 +1,1 @@
-("5.93" ("fa32ef9a2f919557ff1f41374ae7ab7742afba79" . "80760384ba45c995e8e08cd05cf4316ea135ddb6") (collects #"mzscheme" #"main.rkt") (collects #"mzlib" #"pretty.rkt") (collects #"mzlib" #"trace.rkt"))
+("5.3.6" ("fa32ef9a2f919557ff1f41374ae7ab7742afba79" . "ac22be989eb72b3611e5c08e89c1a5fa7d1920e1") (collects #"mzlib" #"pretty.rkt") (collects #"scheme" #"mzscheme.rkt") (collects #"errortrace" #"errortrace-key.rkt") (collects #"mzscheme" #"main.rkt") (collects #"mzlib" #"trace.rkt"))

@@ -70,7 +70,8 @@
       
       ;; cond
       (cond-test-1 "cond equal?(3,3) ==> 4 end" 4)
-      ;(cond-test-2 "cond equal?(2,1)==>5 greater?(3,2)==>3 end" 3)
+      ;(cond-test-3 "cond end" 4)
+      ;(cond-test-2 "cond equal?(2,1) ==> 5 greater?(3,2) ==> 3 end" 3)
 
       ;; test dynamic typechecking
       (no-bool-to-diff-1 "-(zero?(0),1)" error)

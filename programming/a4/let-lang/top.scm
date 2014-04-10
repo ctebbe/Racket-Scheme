@@ -1,3 +1,6 @@
+; caleb tebbe
+; cs454 a4
+; added all functions however cond does not support multiple expressions
 (module top (lib "eopl.ss" "eopl")
   
   ;; top level module.  Loads all required pieces.
