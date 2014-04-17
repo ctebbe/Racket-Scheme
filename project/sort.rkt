@@ -16,4 +16,4 @@
           (else (merge (cons (car lst) '())
                        (sort (cdr lst)))))))
 ;(sort '(8 2 5 2 3))
-;(sort '(90 80 70 60 50 40 30 20 10 1))
+(sort '(90 80 70 60 50 40 30 20 10 1))

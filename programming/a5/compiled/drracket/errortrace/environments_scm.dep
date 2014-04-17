@@ -1,0 +1,1 @@
+("5.93" ("724e010cb481c533dd8b8188ec1e334c62fb6869" . "d4dca55159e850f812b89c1572a61a5e8e6277fa") (collects #"eopl" #"eopl.rkt") (collects #"errortrace" #"errortrace-key.rkt") #"/s/bach/l/under/ctebbe/workspace/cs454/programming/a5/store.scm" #"/s/bach/l/under/ctebbe/workspace/cs454/programming/a5/data-structures.scm")
