@@ -132,5 +132,7 @@ let f = proc (x) proc (y)
 in ((f 44) 33)"
 	12)
       
+      ;(t0 "print -(x,v)")
+      
       ))
   )
