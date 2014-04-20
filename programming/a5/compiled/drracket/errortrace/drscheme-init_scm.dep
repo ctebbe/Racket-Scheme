@@ -1,1 +1,1 @@
-("5.93" ("fa32ef9a2f919557ff1f41374ae7ab7742afba79" . "80760384ba45c995e8e08cd05cf4316ea135ddb6") (collects #"mzscheme" #"main.rkt") (collects #"mzlib" #"pretty.rkt") (collects #"mzlib" #"trace.rkt"))
+("6.0" ("fa32ef9a2f919557ff1f41374ae7ab7742afba79" . "bb18ad39eabd785e255fdd339cadc5419ebe5d5a") (collects #"mzlib" #"pretty.rkt") (collects #"mzscheme" #"main.rkt") (collects #"mzlib" #"trace.rkt"))

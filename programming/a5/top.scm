@@ -53,7 +53,9 @@
                 (run (cadr test))))
           (else (eopl:error 'run-one "no such test: ~s" test-name))))))
  
-   (run-all)
+  (define t0
+    "print -(x,v)")
+  ;(run-all)
   
   )
 

@@ -25,8 +25,8 @@
     (lambda (pgm)
       (initialize-store!)
       (cases program pgm
-        (a-program (exp1)
-          (value-of exp1 (init-env))))))
+        (a-program (stat)
+          (execute-stat stat (init-env))))))
 
   ;; value-of : Exp * Env -> ExpVal
   ;; Page: 118, 119
@@ -74,10 +74,16 @@
         (proc-exp (var body)
           (proc-val (procedure var body env)))
 
-        (call-exp (rator rand)
-          (let ((proc (expval->proc (value-of rator env)))
-                (arg (value-of rand env)))
-            (apply-procedure proc arg)))
+;        (call-exp (rator rand)
+;          (let ((proc (expval->proc (value-of rator env)))
+;                (arg (value-of rand env)))
+;            (apply-procedure proc arg)))
+        
+        (call-exp (rator rands)
+                  (let ((proc (expval->proc (value-of rator env)))
+                        (args (map (lambda(x)
+                                     (value-of x env)) rands)))
+                    (apply-procedure proc args)))
 
         (letrec-exp (p-names b-vars p-bodies letrec-body)
           (value-of letrec-body
@@ -101,6 +107,24 @@
             (num-val 27)))
 
         )))
+
+  (define execute-stat
+    (lambda (stat env)
+      (cases statement stat
+        (print-stat (exp)
+                    (print-exp (value-of exp env))))))
+  
+  (define print-exp
+    (lambda (exp)
+      (cases expval exp
+        (bool-val (v)
+                  (eopl:printf "~a\n" v))
+        (num-val (v)
+                 (eopl:printf "~a\n" v))
+        (proc-val (v)
+                  (eopl:printf "func: ~a\n" v))
+        (ref-val (v)
+                 (eopl:printf "print-exp trying to print ref\n")))))
 
 
   ;; apply-procedure : Proc * ExpVal -> ExpVal

@@ -43,26 +43,6 @@
                     (list-ref p-bodies n)
                     env)))
               (apply-env saved-env search-var)))))))
-  
-  ;edit
-;  (define print-exp
-;    (lambda (exp)
-;      (cases expval exp
-;        (bool-val (v) (write "~a\n" v))
-;        (num-val (v) (write "~a\n" v))
-;        (proc-val (v) (write "func: ~a\n" v))
-;        (ref-val (v) (eopl:error "print-exp trying to print ref\n")))))
-;  (define execute-stat
-;    (lambda (stat env)
-;      (cases statement stat
-;        (print-stat (exp) (print-exp (value-of exp env))))))
-;  (define execute-stats
-;    (lambda (stats env)
-;      (if (not (null? stats))
-;          (begin
-;            (execute-stat (car stats) env)
-;            (execute-stats (cdr stats) env)))))
-  
 
   ;; location : Sym * Listof(Sym) -> Maybe(Int)
   ;; (location sym syms) returns the location of sym in syms or #f is
