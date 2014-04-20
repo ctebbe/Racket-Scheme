@@ -1,1 +1,0 @@
-("6.0" ("fa32ef9a2f919557ff1f41374ae7ab7742afba79" . "bb18ad39eabd785e255fdd339cadc5419ebe5d5a") (collects #"mzlib" #"pretty.rkt") (collects #"mzscheme" #"main.rkt") (collects #"mzlib" #"trace.rkt"))
