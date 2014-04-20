@@ -25,6 +25,16 @@
       (expression
         ("-" "(" expression "," expression ")")
         diff-exp)
+      (expression
+        ("+" "(" expression "," expression ")")
+        add-exp)
+      (expression
+        ("*" "(" expression "," expression ")")
+        mult-exp)
+      
+      (expression
+       ("not" "(" expression ")")
+       not-exp)
       
       (expression
        ("zero?" "(" expression ")")
@@ -65,8 +75,28 @@
         assign-exp)
       
       (statement
-     ("print" expression)
-     print-stat)
+       ("print" expression)
+       print-stat)
+      
+      (statement
+       ("{" (separated-list statement ";") "}")
+       block-stat)
+            
+      (statement
+       ("if" expression "then" statement "else" statement)
+       if-stat)
+      
+      (statement
+       ("while" expression statement)
+       while-stat)
+      
+      (statement
+       (identifier "=" expression)
+       set-stat)
+      
+      (statement
+       ("var" (separated-list identifier ",") ";" statement)
+       declare-stat)
 
       ))
   

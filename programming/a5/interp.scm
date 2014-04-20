@@ -49,6 +49,27 @@
                   (num2 (expval->num val2)))
               (num-val
                 (- num1 num2)))))
+        (add-exp (exp1 exp2)
+          (let ((val1 (value-of exp1 env))
+                (val2 (value-of exp2 env)))
+            (let ((num1 (expval->num val1))
+                  (num2 (expval->num val2)))
+              (num-val
+                (+ num1 num2)))))
+        (mult-exp (exp1 exp2)
+          (let ((val1 (value-of exp1 env))
+                (val2 (value-of exp2 env)))
+            (let ((num1 (expval->num val1))
+                  (num2 (expval->num val2)))
+              (num-val
+                (* num1 num2)))))
+        
+        (not-exp (exp)
+                 (let ((val1 (value-of exp env)))
+                   (let ((val2 (expval->bool val1)))
+                     (if val2
+                         (bool-val #f)
+                         (bool-val #t)))))
 
         ;\commentbox{\zerotestspec}
         (zero?-exp (exp1)
@@ -112,7 +133,37 @@
     (lambda (stat env)
       (cases statement stat
         (print-stat (exp)
-                    (print-exp (value-of exp env))))))
+                    (print-exp (value-of exp env)))
+        (block-stat (stats)
+                    (execute-stats stats env))
+        (if-stat (test-exp t-stat f-stat)
+                 ((let ((val (value-of test-exp env)))
+                    (if (expval->bool val)
+                        (execute-stat t-stat)
+                        (execute-stat f-stat)))))
+        (while-stat (exp stat)
+                    (execute-while-stat exp stat env))
+        (set-stat (var exp)
+                  (setref!
+                   (apply-env env var)
+                   (value-of exp env)))
+        (declare-stat (vars in-stat)
+                      (execute-stat in-stat (extend-unset-env* vars env))))))
+  
+  (define execute-stats
+    (lambda (stats env)
+      (when (not (null? stats))
+        (begin
+          (execute-stat (car stats) env)
+          (execute-stats (cdr stats) env)))))
+  
+  (define execute-while-stat
+    (lambda (exp stat env)
+      (let ((val (value-of exp env)))
+            (when (expval->bool val)
+                (begin
+                  (execute-stat stat env)
+                  (execute-while-stat exp stat env))))))
   
   (define print-exp
     (lambda (exp)
@@ -155,6 +206,14 @@
                   (pretty-print (store->readable (get-store-as-list)))
                   (eopl:printf "~%")))
               (value-of body new-env)))))))  
+  
+    (define extend-unset-env*
+    (lambda (vars env)
+      (if (null? vars) env
+          (extend-unset-env* (cdr vars)
+                             (extend-env (car vars)
+                                         (newref (num-val 1))
+                                         env)))))
 
   ;; store->readable : Listof(List(Ref,Expval)) 
   ;;                    -> Listof(List(Ref,Something-Readable))
