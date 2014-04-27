@@ -40,9 +40,9 @@
        ("zero?" "(" expression ")")
        zero?-exp)
 
-      (expression
-       ("if" expression "then" expression "else" expression)
-       if-exp)
+;      (expression
+;       ("if" expression "then" expression "else" expression)
+;       if-exp)
 
       (expression (identifier) var-exp)
 
@@ -51,12 +51,8 @@
        let-exp)   
 
       (expression
-       ("proc" "(" identifier ")" expression)
+       ("proc" "(" (separated-list identifier ",") ")" expression)
        proc-exp)
-
-      (expression
-       ("(" expression expression ")")
-       call-exp)
 
       (expression
         ("letrec"
@@ -97,6 +93,10 @@
       (statement
        ("var" (separated-list identifier ",") ";" statement)
        declare-stat)
+      
+      (expression
+       ("(" expression expression ")")
+       call-exp)
 
       ))
   

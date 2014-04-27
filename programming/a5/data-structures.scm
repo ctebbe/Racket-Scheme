@@ -96,10 +96,11 @@
   (define expval->printable
     (lambda (val)
       (cases expval val
-	(proc-val (p)
-	  (cases proc p
-	    (procedure (var body saved-env)
-	      (list 'procedure var '... (env->list saved-env)))))
-	(else val))))
+        (proc-val (p)
+                  (cases proc p
+                    (procedure (var body saved-env)
+                               (list 'procedure var '... (env->list saved-env)))))
+        
+        (else val))))
 
 )

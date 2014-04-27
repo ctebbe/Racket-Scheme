@@ -25,7 +25,7 @@
     (lambda (pgm)
       (initialize-store!)
       (cases program pgm
-        (a-program (stat)
+        (a-program (stat) ; everything from the top-level is a statement
           (execute-stat stat (init-env))))))
 
   ;; value-of : Exp * Env -> ExpVal
@@ -79,12 +79,12 @@
                 (bool-val #t)
                 (bool-val #f)))))
               
-        ;\commentbox{\ma{\theifspec}}
-        (if-exp (exp1 exp2 exp3)
-          (let ((val1 (value-of exp1 env)))
-            (if (expval->bool val1)
-              (value-of exp2 env)
-              (value-of exp3 env))))
+        ; edited commented out
+;        (if-exp (exp1 exp2 exp3)
+;          (let ((val1 (value-of exp1 env)))
+;            (if (expval->bool val1)
+;              (value-of exp2 env)
+;              (value-of exp3 env))))
 
         ;\commentbox{\ma{\theletspecsplit}}
         (let-exp (var exp1 body)       
@@ -147,8 +147,8 @@
                   (setref!
                    (apply-env env var)
                    (value-of exp env)))
-        (declare-stat (vars in-stat)
-                      (execute-stat in-stat (extend-unset-env* vars env))))))
+        (declare-stat (vars stat)
+                      (execute-stat stat (extend-uninit-env* vars env))))))
   
   (define execute-stats
     (lambda (stats env)
@@ -168,14 +168,14 @@
   (define print-exp
     (lambda (exp)
       (cases expval exp
+        (num-val (v)
+                 (eopl:printf "~a\n" v)) ; turn value into a string to easily print
         (bool-val (v)
                   (eopl:printf "~a\n" v))
-        (num-val (v)
-                 (eopl:printf "~a\n" v))
         (proc-val (v)
-                  (eopl:printf "func: ~a\n" v))
+                  (eopl:printf "~a\n" v))
         (ref-val (v)
-                 (eopl:printf "print-exp trying to print ref\n")))))
+                 (eopl:error "print-exp cannot print reference...\n")))))
 
 
   ;; apply-procedure : Proc * ExpVal -> ExpVal
@@ -207,12 +207,12 @@
                   (eopl:printf "~%")))
               (value-of body new-env)))))))  
   
-    (define extend-unset-env*
+    (define extend-uninit-env*
     (lambda (vars env)
       (if (null? vars) env
-          (extend-unset-env* (cdr vars)
+          (extend-uninit-env* (cdr vars)
                              (extend-env (car vars)
-                                         (newref (num-val 1))
+                                         (newref (num-val 0))
                                          env)))))
 
   ;; store->readable : Listof(List(Ref,Expval)) 
